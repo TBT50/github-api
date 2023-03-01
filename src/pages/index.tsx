@@ -1,31 +1,7 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
-
-interface fetchSomething {
-  id: number;
-  body: string;
-}
-
-const fetchSomething = async () => {
-  const response = await axios.get(
-    `https://api.github.com/repos/uidotdev/usehooks/issues?state=closed`
-  );
-  const data: fetchSomething[] = response.data;
-  return data;
-};
 
 export default function Home() {
-  const { data, isLoading, isError } = useQuery(["issues"], fetchSomething);
-  if (isLoading) {
-    return <p>LOADING...</p>;
-  }
-
-  if (!data || isError) {
-    return <p>Something went wrong</p>;
-  }
-  console.log(data);
   return (
     <>
       <Head>
@@ -35,12 +11,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h1>Closed Issues</h1>
-        <ul>
-          {data.map((issue) => (
-            <li key={issue.id}>{issue.body}</li>
-          ))}
-        </ul>
+        <h1>MAIN PAGE</h1>
       </main>
     </>
   );
